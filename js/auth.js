@@ -87,6 +87,43 @@ function setCurrentSession(user) {
   updateAuthUI();
 }
 
+function parseJwt(token) {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch (error) {
+    console.error('Invalid JWT token:', error);
+    return null;
+  }
+}
+
+function handleGoogleCredentialResponse(response) {
+  const payload = parseJwt(response.credential);
+
+  if (!payload) {
+    showToast('Google sign-in failed. Please try again.', 'error');
+    return;
+  }
+
+  const googleUser = {
+    id: payload.sub || payload.email,
+    name: payload.name || 'Google User',
+    email: payload.email,
+    phone: '',
+    city: '',
+    role: 'customer'
+  };
+
+  setCurrentSession(googleUser);
+  showToast('Google sign-in successful! Welcome, ' + googleUser.name + '.', 'success');
+}
+
 // Registration
 function registerCustomer(name, email, phone, city, password) {
   const users = getUsersList();

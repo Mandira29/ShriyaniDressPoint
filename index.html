@@ -14,6 +14,9 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <!-- Google Sign-In -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
   <!-- Custom Stylesheets -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/components.css" />
@@ -1301,6 +1304,28 @@
         <button type="submit" class="btn-primary btn-auth-submit">
           <i class="fa-solid fa-right-to-bracket"></i> Sign In to Account
         </button>
+
+        <div style="margin: 1.2rem 0 0.5rem; text-align: center; color: #94A3B8; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
+          OR
+        </div>
+
+        <div id="g_id_onload"
+             data-client_id="589979939552-q15cbn68h8lgus340cr5irat9bv6s8sp.apps.googleusercontent.com"
+             data-context="signin"
+             data-ux_mode="popup"
+             data-callback="handleGoogleCredentialResponse"
+             data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="outline"
+             data-text="signin_with"
+             data-size="large"
+             data-logo_alignment="left"
+             style="display: flex; justify-content: center; margin-top: 0.5rem;">
+        </div>
       </form>
     </div>
 
