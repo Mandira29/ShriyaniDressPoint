@@ -1,0 +1,2072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sriyani Dress Point | Haute Couture & Sri Lankan Fashion Heritage</title>
+  <meta name="description" content="Sriyani Dress Point is Sri Lanka's premier retail clothing chain with mega showrooms in Kegalle, Kurunegala, Kandy, Ratnapura, Matale, Negombo, Gampaha and Badulla. Shop sarees, gents, ladies, kids and bridal wear." />
+
+  <!-- Google Fonts: Haute Couture Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- Admin Mode Top Banner (Visible when logged in as admin) -->
+  <div class="admin-top-bar" id="adminTopBar">
+    <div class="container admin-top-container">
+      <div class="admin-top-title">
+        <i class="fa-solid fa-shield-halved" style="color: var(--color-gold);"></i> 
+        <span>Sriyani Dress Point Administrator Portal Active</span>
+      </div>
+      <div class="admin-top-links">
+        <button type="button" onclick="logoutUser()">
+          <i class="fa-solid fa-right-from-bracket"></i> Exit Admin Mode
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Announcement / Utility Bar -->
+  <div class="announcement-bar">
+    <div class="container announcement-container">
+      <div class="announcement-text">
+        <span class="pill">ISLANDWIDE DELIVERY</span>
+        <span>Complimentary Express Delivery on all orders over <strong>LKR 10,000</strong> across Sri Lanka!</span>
+      </div>
+      <div class="announcement-links">
+        <a href="#branches" onclick="scrollToSection('branches')">
+          <i class="fa-solid fa-store"></i> 8+ Showrooms Across Sri Lanka
+        </a>
+        <a href="tel:+94352223456">
+          <i class="fa-solid fa-phone"></i> Hotline: +94 35 222 3456
+        </a>
+        <a href="javascript:void(0)" onclick="openAuthModal('admin')" title="Staff & Admin Portal">
+          <i class="fa-solid fa-lock"></i> Admin Portal
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Site Header with New Haute Couture Branding -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-main">
+        <!-- New Brand Logo Style -->
+        <a href="index.html" class="brand-logo-wrap" aria-label="Sriyani Dress Point Home">
+          <div class="brand-emblem">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <div class="brand-text-block">
+            <span class="brand-name">SRIYANI</span>
+            <span class="brand-subline">DRESS POINT</span>
+            <span class="brand-tagline">HAUTE COUTURE • EST. 1993 • SRI LANKA</span>
+          </div>
+        </a>
+
+        <!-- Live Search Bar -->
+        <div class="header-search-wrapper">
+          <div class="header-search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="headerSearchInput" placeholder="Search silk sarees, linen shirts, party frocks, batik..." autocomplete="off" />
+          </div>
+          <div id="searchResultsDropdown" class="search-results-dropdown"></div>
+        </div>
+
+        <!-- Action & Auth Buttons -->
+        <div class="header-actions">
+          <!-- Customer & Admin Auth Slot (Dynamically populated by js/auth.js) -->
+          <div id="headerUserAuthSlot" class="header-auth-container">
+            <!-- Rendered by auth.js -->
+          </div>
+
+          <a href="#branches" class="action-btn" onclick="scrollToSection('branches')" aria-label="Find showroom">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Branches</span>
+          </a>
+
+          <button type="button" class="action-btn" onclick="showToast('Wishlist active! Bookmark items anytime.', 'info')" aria-label="View wishlist">
+            <i class="fa-regular fa-heart"></i>
+            <span>Wishlist</span>
+            <span class="action-badge wishlist-badge-count" style="display: none;">0</span>
+          </button>
+
+          <button type="button" class="action-btn" onclick="openCartDrawer()" aria-label="Open shopping bag">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Bag</span>
+            <span class="action-badge cart-badge-count" style="display: none;">0</span>
+          </button>
+
+          <button type="button" class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Open mobile menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Navigation Bar (Desktop) -->
+    <nav class="nav-categories-bar" aria-label="Category Navigation">
+      <div class="container">
+        <ul class="nav-links-list">
+          <li class="nav-item active"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="javascript:void(0)" onclick="selectCategoryAndScroll('women');">Women's Wear</a></li>
+          <li class="nav-item"><a href="javascript:void(0)" onclick="selectCategoryAndScroll('sarees');">Sarees & Handlooms</a></li>
+          <li class="nav-item"><a href="javascript:void(0)" onclick="selectCategoryAndScroll('men');">Men's Executive</a></li>
+          <li class="nav-item"><a href="javascript:void(0)" onclick="selectCategoryAndScroll('kids');">Kids & Teens</a></li>
+          <li class="nav-item"><a href="javascript:void(0)" onclick="selectCategoryAndScroll('bridal');">Bridal Studio</a></li>
+          <li class="nav-item"><a href="javascript:void(0)" onclick="openVirtualFittingRoom();" style="color: #F43F5E; font-weight: 800;"><i class="fa-solid fa-person-dress"></i> Virtual Fitting Room</a></li>
+          <li class="nav-item"><a href="#virtualStylist" onclick="scrollToSection('virtualStylist');" style="color: var(--color-gold); font-weight: 700;"><i class="fa-solid fa-wand-magic-sparkles"></i> Virtual Stylist</a></li>
+          <li class="nav-item badge-hot"><a href="#deals" onclick="scrollToSection('deals');">Avurudu Sale</a></li>
+          <li class="nav-item highlight"><a href="#branches" onclick="scrollToSection('branches');"><i class="fa-solid fa-map-pin"></i> Branch Locator</a></li>
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Slider Carousel -->
+  <section class="hero-slider-section">
+    <div class="hero-slider-wrapper">
+      <!-- Slide 1 -->
+      <div class="hero-slide active">
+        <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1920&q=85" alt="Royal Sri Lankan Saree Heritage" class="hero-bg-img" />
+        <div class="container hero-content-wrap">
+          <span class="hero-tag"><i class="fa-solid fa-crown"></i> Royal Silk Heritage</span>
+          <h1 class="hero-title">Timeless Sarees for <span>Every Celebration</span></h1>
+          <p class="hero-subtitle">Discover Sri Lanka's most admired selection of authentic Kanchipuram, Banarasi, and artisan handloom sarees.</p>
+          <div class="hero-cta-group">
+            <a href="javascript:void(0)" class="btn-gold" onclick="selectCategoryAndScroll('sarees');">
+              <i class="fa-solid fa-bag-shopping"></i> Explore Saree Palace
+            </a>
+            <a href="#branches" class="btn-outline-white" onclick="scrollToSection('branches');">
+              <i class="fa-solid fa-store"></i> Visit Showrooms
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1920&q=85" alt="Men's Executive & Tropical Formalwear" class="hero-bg-img" />
+        <div class="container hero-content-wrap">
+          <span class="hero-tag"><i class="fa-solid fa-shirt"></i> The Gents Pavilion</span>
+          <h2 class="hero-title">Refined <span>Gentlemen's Luxury</span></h2>
+          <p class="hero-subtitle">Pure European linen shirts, tailored executive suits, and authentic handcrafted Sri Lankan batik sarongs.</p>
+          <div class="hero-cta-group">
+            <a href="javascript:void(0)" class="btn-primary" onclick="selectCategoryAndScroll('men');">
+              <i class="fa-solid fa-arrow-right"></i> Shop Men's Collection
+            </a>
+            <a href="#deals" class="btn-outline-white" onclick="scrollToSection('deals');">
+              <i class="fa-solid fa-percent"></i> View Festive Offers
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1920&q=85" alt="Bridal Couture & Evening Galas" class="hero-bg-img" />
+        <div class="container hero-content-wrap">
+          <span class="hero-tag"><i class="fa-solid fa-heart"></i> Exclusive Bridal Studio</span>
+          <h2 class="hero-title">Dressed for Your <span>Dream Wedding</span></h2>
+          <p class="hero-subtitle">Bespoke bridal lehengas, Kandyan bridal sarees, and groom attire crafted with royal craftsmanship.</p>
+          <div class="hero-cta-group">
+            <a href="javascript:void(0)" class="btn-gold" onclick="selectCategoryAndScroll('bridal');">
+              <i class="fa-solid fa-sparkles"></i> Browse Bridal Wear
+            </a>
+            <a href="#branches" class="btn-outline-white" onclick="scrollToSection('branches');">
+              <i class="fa-solid fa-calendar-check"></i> Book Consultation
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Navigation Buttons -->
+      <button type="button" class="hero-nav-prev" aria-label="Previous Slide">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button type="button" class="hero-nav-next" aria-label="Next Slide">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- Carousel Dots -->
+      <div class="hero-dots"></div>
+    </div>
+  </section>
+
+  <!-- Editorial Infinite Marquee Ticker -->
+  <div class="editorial-marquee-wrap">
+    <div class="editorial-marquee-track">
+      <span class="marquee-item"><i class="fa-solid fa-crown"></i> Royal Kanchipuram Silk Atelier</span>
+      <span class="marquee-item"><i class="fa-solid fa-gem"></i> Handcrafted Sri Lankan Batik Heritage</span>
+      <span class="marquee-item"><i class="fa-solid fa-shirt"></i> 100% Pure European Tropical Linen</span>
+      <span class="marquee-item"><i class="fa-solid fa-heart"></i> Bespoke Bridal & Gala Atelier</span>
+      <span class="marquee-item"><i class="fa-solid fa-building-columns"></i> 8+ Mega Showrooms Islandwide</span>
+      <span class="marquee-item"><i class="fa-solid fa-truck-fast"></i> Islandwide Online Express Delivery</span>
+      <!-- Seamless loop duplicate -->
+      <span class="marquee-item"><i class="fa-solid fa-crown"></i> Royal Kanchipuram Silk Atelier</span>
+      <span class="marquee-item"><i class="fa-solid fa-gem"></i> Handcrafted Sri Lankan Batik Heritage</span>
+      <span class="marquee-item"><i class="fa-solid fa-shirt"></i> 100% Pure European Tropical Linen</span>
+      <span class="marquee-item"><i class="fa-solid fa-heart"></i> Bespoke Bridal & Gala Atelier</span>
+      <span class="marquee-item"><i class="fa-solid fa-building-columns"></i> 8+ Mega Showrooms Islandwide</span>
+      <span class="marquee-item"><i class="fa-solid fa-truck-fast"></i> Islandwide Online Express Delivery</span>
+    </div>
+  </div>
+
+  <!-- Trust & Service Badges Ribbon -->
+  <section class="features-ribbon">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon-circle">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <div class="feature-text">
+            <h4>Islandwide Fast Delivery</h4>
+            <p>Reliable door-to-door delivery with Cash on Delivery across Sri Lanka.</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-circle">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div class="feature-text">
+            <h4>8+ Islandwide Mega Stores</h4>
+            <p>Kegalle, Kurunegala, Kandy, Ratnapura, Matale, Negombo & more.</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-circle">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <div class="feature-text">
+            <h4>100% Quality Guaranteed</h4>
+            <p>Finest natural silks, pure European linen, and artisan batiks.</p>
+          </div>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon-circle">
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+          </div>
+          <div class="feature-text">
+            <h4>Easy 7-Day Branch Exchange</h4>
+            <p>Convenient exchanges accepted at any Sriyani showroom islandwide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ON-PAGE ADMIN OPERATIONS WORKSPACE (EXCLUSIVE FOR ADMIN LOGIN)
+       Categories are completely hidden when admin is logged in!
+       ========================================================================== -->
+  <section class="admin-main-workspace" id="adminMainWorkspace">
+    <div class="container">
+      <!-- Admin Workspace Header & Quick Actions -->
+      <div class="admin-ws-header">
+        <div class="admin-ws-title">
+          <h2><i class="fa-solid fa-crown" style="color: var(--color-gold);"></i> Sriyani Management Center</h2>
+          <p>Enterprise ERP: Customer intelligence, online bill payments, B2B supplier stock procurement & automated tax invoices.</p>
+        </div>
+        
+        <!-- Modern Quick-Action Ribbon -->
+        <div class="admin-quick-actions-bar">
+          <button type="button" class="btn-ws-action highlight" onclick="openOrderStockModal()">
+            <i class="fa-solid fa-truck-ramp-box"></i> Order Stock from Supplier
+          </button>
+          <button type="button" class="btn-ws-action" onclick="switchAdminWorkspaceTab('invoices')">
+            <i class="fa-solid fa-file-invoice-dollar"></i> Settle Supplier Invoices
+          </button>
+          <button type="button" class="btn-ws-action" onclick="switchAdminWorkspaceTab('add-item')">
+            <i class="fa-solid fa-circle-plus"></i> Add Item into Categories
+          </button>
+          <button type="button" class="btn-ws-action outline" onclick="printProcurementReport()">
+            <i class="fa-solid fa-print"></i> Export Procurement Summary
+          </button>
+        </div>
+      </div>
+
+      <!-- 6 Executive KPI Command Center Cards -->
+      <div class="admin-ws-kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon"><i class="fa-solid fa-users"></i></div>
+          <div class="kpi-info">
+            <span>Registered Customers</span>
+            <strong id="kpiTotalCustomers">0</strong>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon"><i class="fa-solid fa-bag-shopping"></i></div>
+          <div class="kpi-info">
+            <span>Customer Online Orders</span>
+            <strong id="kpiTotalOrders">0</strong>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+          <div class="kpi-info">
+            <span>Customer Revenue</span>
+            <strong id="kpiTotalRevenue">LKR 0</strong>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon highlight"><i class="fa-solid fa-boxes-packing"></i></div>
+          <div class="kpi-info">
+            <span>Active Stock Orders</span>
+            <strong id="kpiStockOrders">0</strong>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon warning"><i class="fa-solid fa-receipt"></i></div>
+          <div class="kpi-info">
+            <span>Pending Supplier Payables</span>
+            <strong id="kpiSupplierPayables">LKR 0</strong>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-icon"><i class="fa-solid fa-industry"></i></div>
+          <div class="kpi-info">
+            <span>Contracted Suppliers</span>
+            <strong id="kpiTotalSuppliers">6</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modern Admin Tabs Navigation -->
+      <div class="admin-ws-tabs">
+        <button type="button" class="admin-ws-tab-btn active" data-tab="customers">
+          <i class="fa-solid fa-users"></i> Registered Customers
+          <span class="tab-badge" id="tabBadgeCustomers">0</span>
+        </button>
+        <button type="button" class="admin-ws-tab-btn" data-tab="orders">
+          <i class="fa-solid fa-bag-shopping"></i> Customer Online Orders
+          <span class="tab-badge" id="tabBadgeOrders">0</span>
+        </button>
+        <button type="button" class="admin-ws-tab-btn" data-tab="stock-orders">
+          <i class="fa-solid fa-boxes-packing"></i> Supplier Stock Orders
+          <span class="tab-badge" id="tabBadgeStockOrders">0</span>
+        </button>
+        <button type="button" class="admin-ws-tab-btn" data-tab="invoices">
+          <i class="fa-solid fa-file-invoice-dollar"></i> Supplier Invoices & Payables
+          <span class="tab-badge alert" id="tabBadgeInvoices">0</span>
+        </button>
+        <button type="button" class="admin-ws-tab-btn" data-tab="add-item">
+          <i class="fa-solid fa-circle-plus"></i> Add Item into Categories
+        </button>
+        <button type="button" class="admin-ws-tab-btn" data-tab="catalog">
+          <i class="fa-solid fa-shirt"></i> Catalog Inventory
+          <span class="tab-badge" id="tabBadgeCatalog">0</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Customer Details Directory -->
+      <div class="admin-ws-pane" id="adminWsPaneCustomers">
+        <div class="admin-table-controls">
+          <div class="admin-search-field">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="adminWsCustomerSearch" placeholder="Search customer by name, email, phone, or city..." />
+          </div>
+          <span class="admin-count-tag" id="adminWsCustomerCount">Loading...</span>
+        </div>
+
+        <div class="admin-data-table-wrapper">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Customer Name & Email</th>
+                <th>Contact Phone</th>
+                <th>City / District</th>
+                <th>Registration Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminWsCustomerTableBody">
+              <!-- Injected by js/main.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 2: Customer Online Orders & Payments -->
+      <div class="admin-ws-pane" id="adminWsPaneOrders" style="display: none;">
+        <div class="admin-table-controls">
+          <div class="admin-search-field">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="adminWsOrderSearch" placeholder="Search orders by ID, customer name, payment method..." />
+          </div>
+          <span class="admin-count-tag" id="adminWsOrdersCount">Loading...</span>
+        </div>
+
+        <div class="admin-data-table-wrapper">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer Details</th>
+                <th>Items Ordered</th>
+                <th>Total Paid (LKR)</th>
+                <th>Payment Gateway Status</th>
+                <th>Order Date</th>
+                <th>Invoice</th>
+              </tr>
+            </thead>
+            <tbody id="adminWsOrdersTableBody">
+              <!-- Injected by js/main.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 3: B2B Supplier Stock Orders (NEW) -->
+      <div class="admin-ws-pane" id="adminWsPaneStockOrders" style="display: none;">
+        <div class="admin-table-controls">
+          <div class="admin-search-field">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="adminWsStockOrderSearch" placeholder="Search stock PO by number, supplier, item, or showroom..." />
+          </div>
+
+          <!-- Status Filter Chips -->
+          <div class="admin-filter-chips" id="stockOrderFilterChips">
+            <button type="button" class="filter-chip active" data-status="all">All Orders</button>
+            <button type="button" class="filter-chip" data-status="Confirmed">Confirmed</button>
+            <button type="button" class="filter-chip" data-status="In Production">In Production</button>
+            <button type="button" class="filter-chip" data-status="Dispatched">Dispatched</button>
+            <button type="button" class="filter-chip" data-status="Delivered">Delivered</button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <button type="button" class="btn-table-primary" onclick="openOrderStockModal()">
+              <i class="fa-solid fa-plus"></i> New Stock PO
+            </button>
+            <span class="admin-count-tag" id="adminWsStockOrdersCount">Loading...</span>
+          </div>
+        </div>
+
+        <div class="admin-data-table-wrapper">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>PO Number</th>
+                <th>Supplier & Mill</th>
+                <th>Fabric / Stock Item</th>
+                <th>Quantity</th>
+                <th>Total Bill (LKR)</th>
+                <th>Showroom Destination</th>
+                <th>Expected Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminWsStockOrdersTableBody">
+              <!-- Injected by js/main.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 4: Supplier Invoices & Payables (NEW) -->
+      <div class="admin-ws-pane" id="adminWsPaneSupplierInvoices" style="display: none;">
+        <div class="admin-table-controls">
+          <div class="admin-search-field">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="adminWsSupplierInvoiceSearch" placeholder="Search invoice by number, PO, supplier name, or tax ID..." />
+          </div>
+
+          <!-- Status Filter Chips -->
+          <div class="admin-filter-chips" id="supplierInvoiceFilterChips">
+            <button type="button" class="filter-chip active" data-status="all">All Invoices</button>
+            <button type="button" class="filter-chip" data-status="Pending">Pending Payables</button>
+            <button type="button" class="filter-chip" data-status="Paid">Settled (Paid)</button>
+          </div>
+
+          <span class="admin-count-tag" id="adminWsInvoicesCount">Loading...</span>
+        </div>
+
+        <div class="admin-data-table-wrapper">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>Invoice Number</th>
+                <th>Linked PO Ref</th>
+                <th>Supplier & VAT Reg</th>
+                <th>Total Amount (LKR)</th>
+                <th>Issue Date</th>
+                <th>Payment Due Date</th>
+                <th>Settlement Status</th>
+                <th>Invoice & Payment Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminWsInvoicesTableBody">
+              <!-- Injected by js/main.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 5: Add Item into Categories -->
+      <div class="admin-ws-pane" id="adminWsPaneAddItem" style="display: none;">
+        <div style="max-width: 800px; margin: 0 auto;">
+          <h3 style="font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--color-gold);">
+            <i class="fa-solid fa-plus-circle"></i> Add New Clothing Item into Store Categories
+          </h3>
+          <p style="color: #94A3B8; font-size: 0.9rem; margin-bottom: 1.5rem;">
+            Add products into Men's, Women's, Kids, Bridal, or Sarees categories. Once saved, it will instantly display for customers!
+          </p>
+
+          <form id="adminWsAddProductForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="adminWsProdCategory">Target Category *</label>
+                <div class="form-input-wrap">
+                  <i class="fa-solid fa-layer-group"></i>
+                  <select id="adminWsProdCategory" required style="background: #0F172A; color: white;">
+                    <option value="men">Men's Executive & Casual</option>
+                    <option value="women">Women's Wear & Frocks</option>
+                    <option value="kids">Kids & Teens Fashion</option>
+                    <option value="bridal">Bridal Studio & Lehengas</option>
+                    <option value="sarees">Sarees & Handloom Silk</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="adminWsProdName">Product Title *</label>
+                <div class="form-input-wrap">
+                  <i class="fa-solid fa-tag"></i>
+                  <input type="text" id="adminWsProdName" placeholder="e.g. Men's Pure Linen Executive Shirt" required style="background: #0F172A; color: white;" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="adminWsProdPrice">Price in LKR (Sri Lankan Rupee) *</label>
+                <div class="form-input-wrap">
+                  <i class="fa-solid fa-money-bill-wave"></i>
+                  <input type="number" id="adminWsProdPrice" placeholder="e.g. 5500" required style="background: #0F172A; color: white;" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="adminWsProdOrigPrice">Original Price in LKR (Optional)</label>
+                <div class="form-input-wrap">
+                  <i class="fa-solid fa-receipt"></i>
+                  <input type="number" id="adminWsProdOrigPrice" placeholder="e.g. 6800" style="background: #0F172A; color: white;" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="adminWsProdBadge">Badge / Highlight Tag</label>
+                <div class="form-input-wrap">
+                  <i class="fa-solid fa-certificate"></i>
+                  <select id="adminWsProdBadge" style="background: #0F172A; color: white;">
+                    <option value="New Arrival">New Arrival</option>
+                    <option value="Bestseller">Bestseller</option>
+                    <option value="Exclusive">Exclusive</option>
+                    <option value="Festive Offer">Festive Offer</option>
+                    <option value="Heritage Sri Lanka">Heritage Sri Lanka</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Available Sizes</label>
+                <div class="size-checkbox-group">
+                  <label class="size-check-label"><input type="checkbox" name="adminWsProdSize" value="Free Size" checked /> Free Size</label>
+                  <label class="size-check-label"><input type="checkbox" name="adminWsProdSize" value="S" checked /> S</label>
+                  <label class="size-check-label"><input type="checkbox" name="adminWsProdSize" value="M" checked /> M</label>
+                  <label class="size-check-label"><input type="checkbox" name="adminWsProdSize" value="L" checked /> L</label>
+                  <label class="size-check-label"><input type="checkbox" name="adminWsProdSize" value="XL" checked /> XL</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="adminWsProdImage">Product Image URL *</label>
+              <div class="form-input-wrap">
+                <i class="fa-solid fa-image"></i>
+                <input type="url" id="adminWsProdImage" placeholder="https://images.unsplash.com/..." required style="background: #0F172A; color: white;" />
+              </div>
+
+              <span style="font-size: 0.75rem; color: #94A3B8; margin-top: 0.4rem; display: block;">Quick-pick high resolution photo preset:</span>
+              <div class="preset-images-picker">
+                <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=200&q=80" alt="Men Linen" class="preset-thumb" title="Men Linen Shirt" onclick="setAdminWsImagePreset(this.src)" />
+                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=200&q=80" alt="Batik Wear" class="preset-thumb" title="Batik Shirt" onclick="setAdminWsImagePreset(this.src)" />
+                <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=200&q=80" alt="Ladies Chiffon" class="preset-thumb" title="Ladies Dress" onclick="setAdminWsImagePreset(this.src)" />
+                <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=200&q=80" alt="Silk Saree" class="preset-thumb" title="Kanchipuram Silk Saree" onclick="setAdminWsImagePreset(this.src)" />
+                <img src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=200&q=80" alt="Kids Frock" class="preset-thumb" title="Kids Party Frock" onclick="setAdminWsImagePreset(this.src)" />
+                <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=200&q=80" alt="Bridal Lehenga" class="preset-thumb" title="Bridal Lehenga" onclick="setAdminWsImagePreset(this.src)" />
+              </div>
+              <img id="adminWsImagePreview" src="" alt="Preview" class="admin-image-preview-box" />
+            </div>
+
+            <div class="form-group">
+              <label for="adminWsProdDesc">Description & Fabric Details</label>
+              <div class="form-input-wrap">
+                <i class="fa-solid fa-align-left" style="top: 14px;"></i>
+                <textarea id="adminWsProdDesc" rows="3" placeholder="Crafted with pure Sri Lankan craftsmanship, breathable weave, and perfect fit." style="background: #0F172A; color: white;"></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%; padding: 0.9rem 0; font-size: 1rem; background: var(--color-gold); color: var(--color-dark); font-weight: 800;">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Save & Publish Item to Category
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Tab 6: Catalog Inventory Manager -->
+      <div class="admin-ws-pane" id="adminWsPaneCatalog" style="display: none;">
+        <div class="admin-table-controls">
+          <div class="admin-search-field">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="adminWsCatalogSearch" placeholder="Search catalog by title or category..." />
+          </div>
+          <span class="admin-count-tag" id="adminWsCatalogCount">Loading...</span>
+        </div>
+
+        <div class="admin-data-table-wrapper">
+          <table class="admin-data-table">
+            <thead>
+              <tr>
+                <th>Photo</th>
+                <th>Item Name</th>
+                <th>Category</th>
+                <th>Price (LKR)</th>
+                <th>Sizes</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminWsCatalogTableBody">
+              <!-- Injected by js/main.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SHOPPING CATEGORIES SECTION (CUSTOMER-ONLY)
+       Creative Bento Box Grid
+       ========================================================================== -->
+  <section class="section-padding" id="categories">
+    <div class="container">
+
+      <!-- Guest Account Gate Banner -->
+      <div class="guest-account-gate" id="guestAccountGate">
+        <div class="gate-content">
+          <span class="pill" style="background: var(--color-primary); color: white; margin-bottom: 0.5rem; display: inline-block;">CUSTOMER MEMBERSHIP</span>
+          <h3>Create an Account to Unlock All Collections</h3>
+          <p>Sign up in seconds to explore our complete Men's, Women's, Kids, and Bridal collections with member pricing and online payment checkout.</p>
+        </div>
+        <div class="gate-actions">
+          <button type="button" class="btn-primary" onclick="openAuthModal('register')">
+            <i class="fa-solid fa-user-plus"></i> Create Customer Account
+          </button>
+          <button type="button" class="btn-outline-primary" style="padding: 0.75rem 1.4rem; border: 1.5px solid var(--color-primary); color: var(--color-primary); font-weight: 700; border-radius: var(--radius-full);" onclick="openAuthModal('login')">
+            Sign In
+          </button>
+        </div>
+      </div>
+
+      <!-- Customer Unlocked Header -->
+      <div class="customer-unlocked-header" id="customerUnlockedHeader">
+        <div class="unlocked-wrap">
+          <div>
+            <i class="fa-solid fa-circle-check" style="color: #166534; font-size: 1.1rem; margin-right: 0.4rem;"></i>
+            <strong>Ayubowan, <span class="customer-name-display">Customer</span>!</strong>
+            <span>Your personalized Men, Women, Kids & Bridal departments are ready for selection.</span>
+          </div>
+          <a href="#collection" class="cat-pill men" style="background: #166534; color: white;" onclick="scrollToSection('collection');">
+            Browse All Styles <i class="fa-solid fa-arrow-down"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <span class="section-eyebrow">Haute Couture Departments</span>
+        <h2 class="section-title">Curated Fashion Pavilions</h2>
+        <p class="section-desc">Immerse yourself in our premier Sri Lankan fashion collections, tailored for weddings, executive life, and festive joy.</p>
+      </div>
+
+      <!-- Haute-Couture Bento Box Category Layout -->
+      <div class="bento-category-grid">
+        <!-- Bento 1: Silk Sarees (Large Featured) -->
+        <div class="bento-tile col-8" onclick="selectCategoryAndScroll('sarees');">
+          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1200&q=80" alt="Silk Sarees Atelier" />
+          <div class="bento-overlay">
+            <span class="bento-badge"><i class="fa-solid fa-gem"></i> Heritage Atelier • 180+ Designs</span>
+            <h3>Royal Kanchipuram & Handloom Silk</h3>
+            <p>Pure golden zari borders, authentic master weaver silks, and traditional Sri Lankan festive drapes.</p>
+            <span class="bento-link">Enter Saree Palace <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Bento 2: Men's Executive (Tall Feature) -->
+        <div class="bento-tile col-4" onclick="selectCategoryAndScroll('men');">
+          <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80" alt="Men's Collection" />
+          <div class="bento-overlay">
+            <span class="bento-badge">Gents Pavilion</span>
+            <h3>Men's Pure Linen & Formalwear</h3>
+            <p>Breathable European linen shirts, tailored tuxedos & artisan batik.</p>
+            <span class="bento-link">Shop Men's <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Bento 3: Kids & Teens -->
+        <div class="bento-tile col-4-sm" onclick="selectCategoryAndScroll('kids');">
+          <img src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=800&q=80" alt="Kids Fashion" />
+          <div class="bento-overlay">
+            <span class="bento-badge">Kids & Teens</span>
+            <h3>Princess Frocks & Kurtas</h3>
+            <p>Playful festive attire with skin-safe lining.</p>
+            <span class="bento-link">Discover Kids <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Bento 4: Bridal Studio -->
+        <div class="bento-tile col-4-sm" onclick="selectCategoryAndScroll('bridal');">
+          <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=800&q=80" alt="Bridal Couture" />
+          <div class="bento-overlay">
+            <span class="bento-badge"><i class="fa-solid fa-crown"></i> Exclusive Atelier</span>
+            <h3>Bridal Studio & Lehengas</h3>
+            <p>Hand-embroidered zardozi and crimson micro-velvets.</p>
+            <span class="bento-link">Explore Bridal <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- Bento 5: Women's Western & Casual -->
+        <div class="bento-tile col-4-sm" onclick="selectCategoryAndScroll('women');">
+          <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=800&q=80" alt="Women's Fashion" />
+          <div class="bento-overlay">
+            <span class="bento-badge">Modern Silhouette</span>
+            <h3>Women's Casual & Party Wear</h3>
+            <p>Chiffon maxis, office wear tunics & evening frocks.</p>
+            <span class="bento-link">Shop Ladies <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       NEW INTERACTIVE VIRTUAL STYLIST & OCCASION MATCHER
+       ========================================================================== -->
+  <section class="virtual-stylist-section" id="virtualStylist">
+    <div class="container">
+      <div class="virtual-stylist-header">
+        <span class="stylist-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Virtual Stylist</span>
+        <h2 class="stylist-title">Dress for the <span>Perfect Moment</span></h2>
+        <p style="color: #CBD5E1; font-size: 0.95rem;">Select your upcoming Sri Lankan occasion to preview an artistically coordinated 3-piece designer look with an exclusive bundle discount.</p>
+      </div>
+
+      <!-- Occasion Selection Pills -->
+      <div class="occasion-selector-pills">
+        <button type="button" class="occasion-pill-btn active" data-occasion="wedding">
+          <i class="fa-solid fa-gem"></i> Poruwa & Wedding Gala
+        </button>
+        <button type="button" class="occasion-pill-btn" data-occasion="festive">
+          <i class="fa-solid fa-sun"></i> Avurudu & Festive
+        </button>
+        <button type="button" class="occasion-pill-btn" data-occasion="corporate">
+          <i class="fa-solid fa-briefcase"></i> Colombo Executive
+        </button>
+        <button type="button" class="occasion-pill-btn" data-occasion="resort">
+          <i class="fa-solid fa-umbrella-beach"></i> Coastal Sunset Gala
+        </button>
+      </div>
+
+      <!-- Curated Ensemble Card (Dynamic) -->
+      <div class="stylist-ensemble-card" id="stylistEnsembleContainer">
+        <!-- Rendered by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CUSTOMER VIRTUAL FITTING ROOM SHOWCASE
+       ========================================================================== -->
+  <section class="virtual-fitting-room-section" id="virtualFittingRoom">
+    <div class="container">
+      <div class="fitting-showcase-card">
+        <div class="fitting-showcase-content">
+          <span class="fitting-pill"><i class="fa-solid fa-person-dress"></i> AI Smart Fitting Room</span>
+          <h2 class="fitting-title">Try On Sriyani Fashion in <span>3D Virtual Studio</span></h2>
+          <p class="fitting-desc">
+            Experience realistic visual draping, custom model avatars, and our AI Precision Size Finder. Preview how sarees, lehengas, and executive linen drape on your exact body proportions before ordering online.
+          </p>
+
+          <div class="fitting-perks-list">
+            <div class="fitting-perk-item">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Live Mannequin Garment Draping</span>
+            </div>
+            <div class="fitting-perk-item">
+              <i class="fa-solid fa-ruler-combined"></i>
+              <span>Smart AI Size & Fit Prediction</span>
+            </div>
+            <div class="fitting-perk-item">
+              <i class="fa-solid fa-palette"></i>
+              <span>Live Shade & Lighting Ambience</span>
+            </div>
+          </div>
+
+          <div class="fitting-showcase-actions">
+            <button type="button" class="btn-primary" onclick="openVirtualFittingRoom(null, 'female')" style="background: var(--gold-gradient); color: #1A0D00; font-weight: 800;">
+              <i class="fa-solid fa-person-dress"></i> Launch Women's Fitting Room
+            </button>
+            <button type="button" class="btn-outline" onclick="openVirtualFittingRoom(null, 'male')" style="border-color: white; color: white;">
+              <i class="fa-solid fa-person"></i> Launch Men's Fitting Room
+            </button>
+          </div>
+        </div>
+
+        <div class="fitting-showcase-visual">
+          <div class="fitting-visual-frame">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Virtual Fitting Room Model" class="fitting-hero-avatar" />
+            <div class="fitting-floating-badge top-right">
+              <span class="match-rate">98% Match</span>
+              <small>Size M Recommended</small>
+            </div>
+            <div class="fitting-floating-badge bottom-left">
+              <i class="fa-solid fa-circle-check" style="color: #10B981;"></i>
+              <span>Comfort Fit at Waist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Catalog (Customer Only) -->
+  <section class="section-padding" id="collection" style="background-color: #FFFFFF;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Curated Fashion Showcase</span>
+        <h2 class="section-title">Trending Styles in Sri Lanka</h2>
+        <p class="section-desc">Hand-picked premium garments crafted for comfort, tropical climate, and celebration.</p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="product-filter-bar">
+        <button type="button" class="product-filter-btn active" data-filter="all">All Styles</button>
+        <button type="button" class="product-filter-btn" data-filter="men">Men's Apparel</button>
+        <button type="button" class="product-filter-btn" data-filter="women">Women's Fashion</button>
+        <button type="button" class="product-filter-btn" data-filter="kids">Kids Collection</button>
+        <button type="button" class="product-filter-btn" data-filter="bridal">Bridal Studio</button>
+        <button type="button" class="product-filter-btn" data-filter="sarees">Sarees & Handlooms</button>
+      </div>
+
+      <!-- Dynamic Product Grid -->
+      <div class="product-grid" id="productGrid">
+        <!-- Rendered by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Flash Sale / Festive Deal Banner with Real Countdown -->
+  <section class="flash-sale-section" id="deals">
+    <div class="container">
+      <div class="flash-sale-wrapper">
+        <div class="flash-sale-content">
+          <span class="flash-badge"><i class="fa-solid fa-bolt"></i> Limited Time Offer</span>
+          <h2 class="flash-title">Avurudu & Festive Gala Sale</h2>
+          <p class="flash-desc">Enjoy up to <strong>25% OFF</strong> on exquisite Kanchipuram Sarees, Pure Linen Gents Wear, and Kid's Party Frocks both online and at all Sriyani showrooms.</p>
+          
+          <!-- Live Countdown Timer -->
+          <div class="countdown-timer">
+            <div class="timer-box">
+              <span class="timer-val" id="timerDays">03</span>
+              <span class="timer-lbl">Days</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-box">
+              <span class="timer-val" id="timerHours">18</span>
+              <span class="timer-lbl">Hours</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-box">
+              <span class="timer-val" id="timerMinutes">45</span>
+              <span class="timer-lbl">Mins</span>
+            </div>
+            <span class="timer-sep">:</span>
+            <div class="timer-box">
+              <span class="timer-val" id="timerSeconds">30</span>
+              <span class="timer-lbl">Secs</span>
+            </div>
+          </div>
+
+          <div class="hero-cta-group">
+            <a href="#collection" class="btn-gold" onclick="scrollToSection('collection');">
+              <i class="fa-solid fa-cart-arrow-down"></i> Claim Discounts Now
+            </a>
+            <a href="#branches" class="btn-outline-white" onclick="scrollToSection('branches');">
+              <i class="fa-solid fa-map-location-dot"></i> Check Nearest Showroom
+            </a>
+          </div>
+        </div>
+
+        <div class="flash-media">
+          <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80" alt="Festive Fashion Sale Sri Lanka" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Sri Lanka Branch Locator -->
+  <section class="section-padding branch-section" id="branches">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Islandwide Presence</span>
+        <h2 class="section-title">Our Islandwide Showroom Network</h2>
+        <p class="section-desc">Experience Sriyani Dress Point's signature hospitality and multi-story retail stores in your hometown.</p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="branch-filter-controls">
+        <div class="branch-search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="branchSearchInput" placeholder="Search city or branch (e.g. Kegalle, Kurunegala, Kandy, Negombo)..." />
+        </div>
+
+        <div class="branch-filter-dropdowns">
+          <select id="branchDistrictSelect" class="branch-district-select" aria-label="Filter by province or district">
+            <option value="all">All Provinces / Districts</option>
+            <option value="Sabaragamuwa">Sabaragamuwa (Kegalle, Ratnapura)</option>
+            <option value="North Western">North Western (Kurunegala)</option>
+            <option value="Central">Central (Kandy, Matale)</option>
+            <option value="Western">Western (Negombo, Gampaha)</option>
+            <option value="Uva">Uva (Badulla)</option>
+          </select>
+          <span class="branch-count-display" id="branchCountDisplay">Loading branches...</span>
+        </div>
+      </div>
+
+      <!-- Branches Grid -->
+      <div class="branches-grid" id="branchesContainer">
+        <!-- Rendered by js/main.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Testimonials -->
+  <section class="section-padding testimonials-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Customer Experiences</span>
+        <h2 class="section-title">Loved by Millions Across Sri Lanka</h2>
+        <p class="section-desc">Hear what our cherished customers say about shopping with Sriyani Dress Point.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Sriyani Dress Point has been our family's favorite shopping destination for generations. The saree pavilion in Kegalle is simply breath-taking, and their online delivery to Kandy was super fast!"</p>
+          <div class="testimonial-user">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Chamari Atapattu" class="user-avatar" />
+            <div class="user-info">
+              <h4>Chamari Atapattu</h4>
+              <span>Kandy, Sri Lanka</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"The linen formal collection at the Kurunegala mega showroom is top-tier. Exceptional customer service, ample parking, and very reasonable prices for premium quality fabric."</p>
+          <div class="testimonial-user">
+            <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80" alt="Dr. Danushka Jayasinghe" class="user-avatar" />
+            <div class="user-info">
+              <h4>Dr. Danushka Jayasinghe</h4>
+              <span>Kurunegala, Sri Lanka</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">"Ordered frocks for my little daughter and traditional batiks for my husband. Packaging was neat, delivered in 48 hours, and sizing was true to chart. Highly recommended!"</p>
+          <div class="testimonial-user">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Nadeeka Wickramasinghe" class="user-avatar" />
+            <div class="user-info">
+              <h4>Nadeeka Wickramasinghe</h4>
+              <span>Negombo, Sri Lanka</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- #SriyaniStyle Social Gallery -->
+  <section class="section-padding" id="lookbook" style="background-color: #FFFFFF; padding-bottom: 2rem;">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 2rem;">
+        <span class="section-eyebrow">Tag Us #SriyaniStyle</span>
+        <h2 class="section-title">Follow Us on Instagram</h2>
+        <p class="section-desc">Share your elegant moments wearing Sriyani creations and get featured on our official feed.</p>
+      </div>
+
+      <div class="social-feed-grid">
+        <div class="social-feed-item">
+          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=500&q=80" alt="Sriyani Style 1" />
+          <div class="social-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+        <div class="social-feed-item">
+          <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=500&q=80" alt="Sriyani Style 2" />
+          <div class="social-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+        <div class="social-feed-item">
+          <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=500&q=80" alt="Sriyani Style 3" />
+          <div class="social-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+        <div class="social-feed-item">
+          <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=500&q=80" alt="Sriyani Style 4" />
+          <div class="social-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+        <div class="social-feed-item">
+          <img src="https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?auto=format&fit=crop&w=500&q=80" alt="Sriyani Style 5" />
+          <div class="social-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+        <div class="social-feed-item">
+          <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=500&q=80" alt="Sriyani Style 6" />
+          <div class="social-overlay"><i class="fa-brands fa-instagram"></i></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Signup -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-box">
+        <div class="newsletter-text">
+          <h3>Unlock 10% Off Your First Order</h3>
+          <p>Join the Sriyani VIP Fashion Club for special branch previews, bridal invites, and festive promotions.</p>
+        </div>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Enter your email address..." required />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Footer with Updated Brand Identity -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top-grid">
+        <!-- Col 1: About -->
+        <div class="footer-col footer-about">
+          <div class="brand-logo-wrap" style="margin-bottom: 1.25rem;">
+            <div class="brand-emblem" style="width: 44px; height: 44px; font-size: 1.2rem;">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <div class="brand-text-block">
+              <span class="brand-name" style="font-size: 1.45rem; -webkit-text-fill-color: #FFF2CC;">SRIYANI</span>
+              <span class="brand-subline" style="color: #94A3B8; font-size: 0.85rem;">DRESS POINT</span>
+              <span class="brand-tagline" style="color: var(--color-gold);">HAUTE COUTURE • EST. 1993</span>
+            </div>
+          </div>
+          <p>Founded in Kegalle, Sri Lanka, Sriyani Dress Point has grown into a household fashion icon across the island. We provide premium fashion for the entire family with unmatched value and trusted Sri Lankan warmth.</p>
+          <div class="footer-social-links">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer" class="social-icon-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" class="social-icon-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://youtube.com" target="_blank" rel="noreferrer" class="social-icon-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://tiktok.com" target="_blank" rel="noreferrer" class="social-icon-btn" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Categories -->
+        <div class="footer-col">
+          <h4>Fashion Departments</h4>
+          <ul class="footer-links-list">
+            <li><a href="javascript:void(0)" onclick="selectCategoryAndScroll('sarees');">Kanchipuram & Silk Sarees</a></li>
+            <li><a href="javascript:void(0)" onclick="selectCategoryAndScroll('women');">Women's Party Frocks</a></li>
+            <li><a href="javascript:void(0)" onclick="selectCategoryAndScroll('men');">Men's Pure Linen Shirts</a></li>
+            <li><a href="javascript:void(0)" onclick="selectCategoryAndScroll('men');">Sri Lankan Batik Sarongs</a></li>
+            <li><a href="javascript:void(0)" onclick="selectCategoryAndScroll('bridal');">Bridal Studio & Lehengas</a></li>
+            <li><a href="javascript:void(0)" onclick="selectCategoryAndScroll('kids');">Kids & Baby Wear</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Branches -->
+        <div class="footer-col">
+          <h4>Our Showrooms</h4>
+          <ul class="footer-links-list">
+            <li><a href="#branches" onclick="scrollToSection('branches');">Kegalle Flagship Mega Store</a></li>
+            <li><a href="#branches" onclick="scrollToSection('branches');">Kurunegala Mega Showroom</a></li>
+            <li><a href="#branches" onclick="scrollToSection('branches');">Kandy Dalada Veediya</a></li>
+            <li><a href="#branches" onclick="scrollToSection('branches');">Ratnapura Main Street</a></li>
+            <li><a href="#branches" onclick="scrollToSection('branches');">Matale Trincomalee Street</a></li>
+            <li><a href="#branches" onclick="scrollToSection('branches');">Negombo Coastal Showroom</a></li>
+            <li><a href="#branches" onclick="scrollToSection('branches');">Gampaha Yakkala Road</a></li>
+            <li><a href="#branches" onclick="scrollToSection('branches');">Badulla King Street</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact -->
+        <div class="footer-col">
+          <h4>Customer Care</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>
+              <strong>Head Office Hotline</strong>
+              <p>+94 35 222 3456 / +94 35 222 2456</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <strong>Support Email</strong>
+              <p>support@sriyanidresspoint.lk</p>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Head Office Address</strong>
+              <p>No. 189, Main Street, Kegalle, Sri Lanka</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Sriyani Dress Point (Pvt) Ltd. All Rights Reserved. Crafted with care in Sri Lanka.</p>
+        <div class="payment-gateways">
+          <span class="payment-chip"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+          <span class="payment-chip"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+          <span class="payment-chip">Koko (Buy Now Pay Later)</span>
+          <span class="payment-chip">Mintpay</span>
+          <span class="payment-chip"><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS & DRAWERS
+       ========================================================================== -->
+
+  <!-- 1. Slide-Over Shopping Cart Drawer -->
+  <div class="cart-backdrop" id="cartBackdrop" onclick="closeCartDrawer()"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Bag">
+    <div class="cart-drawer-header">
+      <h3><i class="fa-solid fa-bag-shopping" style="color: var(--color-primary);"></i> Your Shopping Bag</h3>
+      <button type="button" class="close-drawer-btn" onclick="closeCartDrawer()" aria-label="Close cart drawer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Free Delivery Progress Meter -->
+    <div class="free-shipping-meter">
+      <span class="shipping-notice-text" id="freeShippingNotice">
+        Add <strong>LKR 10,000</strong> more for <strong>FREE Islandwide Delivery</strong>!
+      </span>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="freeShippingProgress"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items List -->
+    <div class="cart-drawer-items" id="cartDrawerItems">
+      <!-- Injected by js/cart.js -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="cart-empty-state" id="cartEmptyState" style="display: none;">
+      <i class="fa-solid fa-basket-shopping"></i>
+      <h4>Your Bag is Empty</h4>
+      <p>Explore our latest Sri Lankan sarees, gents linen, and festive collections.</p>
+      <button type="button" class="btn-primary" onclick="closeCartDrawer(); scrollToSection('collection');">
+        Start Shopping
+      </button>
+    </div>
+
+    <!-- Cart Footer & Checkout Button -->
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <strong id="cartSubtotalAmount">LKR 0</strong>
+      </div>
+      <div class="cart-summary-row">
+        <span>Islandwide Shipping</span>
+        <span id="cartShippingFee">LKR 450</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span>Estimated Total</span>
+        <span id="cartFinalTotal">LKR 0</span>
+      </div>
+      <button type="button" class="btn-primary btn-checkout" onclick="openPaymentGateway()">
+        <i class="fa-solid fa-lock"></i> Proceed to Online Payment
+      </button>
+    </div>
+  </aside>
+
+  <!-- 2. Interactive Quick View Modal -->
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="quickview-modal" id="quickViewModal" role="dialog" aria-modal="true">
+    <button type="button" class="close-modal-btn" id="closeQuickView" aria-label="Close quick view modal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <div id="quickViewContent">
+      <!-- Dynamically filled by js/main.js -->
+    </div>
+  </div>
+
+  <!-- 3. Customer Registration & Login / Admin Modal -->
+  <div class="auth-backdrop" id="authBackdrop"></div>
+  <div class="auth-modal" id="authModal" role="dialog" aria-modal="true">
+    <button type="button" class="close-modal-btn" id="closeAuthModal" aria-label="Close authentication modal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="auth-modal-header">
+      <div class="auth-logo-brand">
+        <div class="brand-emblem" style="width: 38px; height: 38px; font-size: 1rem;"><i class="fa-solid fa-crown"></i></div>
+        <span class="brand-name" style="font-size: 1.35rem;">SRIYANI DRESS POINT</span>
+      </div>
+      <h3>Welcome to Sriyani Fashion</h3>
+    </div>
+
+    <!-- Auth Tabs -->
+    <div class="auth-tabs-nav">
+      <button type="button" class="auth-tab-btn active" data-tab="login">Customer Sign In</button>
+      <button type="button" class="auth-tab-btn" data-tab="register">Create Account</button>
+      <button type="button" class="auth-tab-btn" data-tab="admin"><i class="fa-solid fa-shield"></i> Admin Portal</button>
+    </div>
+
+    <!-- Pane 1: Customer Login -->
+    <div class="auth-pane-body" id="paneCustomerLogin">
+      <form id="customerLoginForm">
+        <div class="demo-credentials-box">
+          <strong>Demo Customer Account:</strong>
+          Email: <code>chamari@gmail.com</code> | Password: <code>password123</code>
+          <span class="demo-autofill-link" onclick="document.getElementById('loginEmail').value='chamari@gmail.com'; document.getElementById('loginPassword').value='password123';">Autofill</span>
+        </div>
+
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="loginEmail" placeholder="e.g. yourname@gmail.com" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="Enter your password" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary btn-auth-submit">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign In to Account
+        </button>
+      </form>
+    </div>
+
+    <!-- Pane 2: Customer Registration -->
+    <div class="auth-pane-body" id="paneCustomerRegister" style="display: none;">
+      <form id="customerRegisterForm">
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" id="regName" placeholder="e.g. Kasun Fernando" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">Email Address</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="email" id="regEmail" placeholder="e.g. kasun@example.com" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="regPhone">Sri Lankan Phone</label>
+            <div class="form-input-wrap">
+              <i class="fa-solid fa-phone"></i>
+              <input type="tel" id="regPhone" placeholder="+94 7X XXX XXXX" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regCity">City / District</label>
+            <div class="form-input-wrap">
+              <i class="fa-solid fa-location-dot"></i>
+              <input type="text" id="regCity" placeholder="e.g. Kegalle, Kandy" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">Create Password</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="regPassword" placeholder="Minimum 6 characters" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary btn-auth-submit">
+          <i class="fa-solid fa-user-plus"></i> Complete Registration
+        </button>
+      </form>
+    </div>
+
+    <!-- Pane 3: Admin Portal Login -->
+    <div class="auth-pane-body" id="paneAdminLogin" style="display: none;">
+      <form id="adminLoginForm">
+        <div class="demo-credentials-box">
+          <strong>Staff Admin Credentials:</strong>
+          Email: <code>admin@sriyanidresspoint.lk</code> | Password: <code>admin123</code>
+          <span class="demo-autofill-link" onclick="document.getElementById('adminEmail').value='admin@sriyanidresspoint.lk'; document.getElementById('adminPassword').value='admin123';">Autofill</span>
+        </div>
+
+        <div class="form-group">
+          <label for="adminEmail">Staff Email</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-id-badge"></i>
+            <input type="email" id="adminEmail" placeholder="admin@sriyanidresspoint.lk" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="adminPassword">Master Password</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-shield-halved"></i>
+            <input type="password" id="adminPassword" placeholder="Enter admin password" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary btn-auth-submit" style="background: #111827; border: 1px solid var(--color-gold); color: var(--color-gold-light);">
+          <i class="fa-solid fa-key"></i> Authenticate as Admin
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Online Payment Gateway Modal -->
+  <div class="payment-gateway-backdrop" id="paymentGatewayBackdrop"></div>
+  <div class="payment-gateway-modal" id="paymentGatewayModal" role="dialog" aria-modal="true">
+    <div class="gateway-header">
+      <h3><i class="fa-solid fa-shield-halved" style="color: var(--color-gold);"></i> Sriyani Online Payment Gateway</h3>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="gateway-security-tag"><i class="fa-solid fa-lock"></i> 256-Bit SSL Encrypted</span>
+        <button type="button" class="close-modal-btn" onclick="closePaymentGateway()" style="position: static; background: #334155; color: white;" aria-label="Close payment gateway">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="gateway-body-grid">
+      <!-- Left: Customer Information & Payment Method Form -->
+      <div class="gateway-form-col">
+        <form id="paymentGatewayForm">
+          <h4 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--color-dark);">1. Delivery & Contact Details</h4>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkoutCustomerName">Full Name *</label>
+              <div class="form-input-wrap">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" id="checkoutCustomerName" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="checkoutCustomerPhone">Phone Number *</label>
+              <div class="form-input-wrap">
+                <i class="fa-solid fa-phone"></i>
+                <input type="tel" id="checkoutCustomerPhone" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkoutCustomerEmail">Email Address</label>
+              <div class="form-input-wrap">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="email" id="checkoutCustomerEmail" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="checkoutDeliveryCity">Delivery City / District *</label>
+              <div class="form-input-wrap">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="text" id="checkoutDeliveryCity" placeholder="e.g. Kegalle, Kandy, Colombo" required />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="checkoutDeliveryAddress">Full Street Address *</label>
+            <div class="form-input-wrap">
+              <i class="fa-solid fa-house"></i>
+              <input type="text" id="checkoutDeliveryAddress" placeholder="House number, road name, apartment..." required />
+            </div>
+          </div>
+
+          <h4 style="font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.75rem; color: var(--color-dark);">2. Select Payment Method</h4>
+          
+          <!-- Payment Method Tabs -->
+          <div class="gateway-methods-selector">
+            <button type="button" class="gateway-method-tab active" data-method="card" onclick="switchPaymentMethod('card')">
+              <i class="fa-brands fa-cc-visa"></i>
+              <span>Credit / Debit Card</span>
+            </button>
+            <button type="button" class="gateway-method-tab" data-method="koko" onclick="switchPaymentMethod('koko')">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Koko (3x Pay)</span>
+            </button>
+            <button type="button" class="gateway-method-tab" data-method="mintpay" onclick="switchPaymentMethod('mintpay')">
+              <i class="fa-solid fa-credit-card"></i>
+              <span>Mintpay</span>
+            </button>
+            <button type="button" class="gateway-method-tab" data-method="cod" onclick="switchPaymentMethod('cod')">
+              <i class="fa-solid fa-money-bill-wave"></i>
+              <span>Cash on Delivery</span>
+            </button>
+          </div>
+
+          <!-- Method 1: Credit / Debit Card -->
+          <div id="gatewayPaneCard">
+            <div class="card-logos-row">
+              <i class="fa-brands fa-cc-visa" style="color: #1A1F71;"></i>
+              <i class="fa-brands fa-cc-mastercard" style="color: #EB001B;"></i>
+              <i class="fa-brands fa-cc-amex" style="color: #2E77BC;"></i>
+            </div>
+
+            <div class="form-group">
+              <label for="cardNumInput">Card Number *</label>
+              <div class="form-input-wrap">
+                <i class="fa-regular fa-credit-card"></i>
+                <input type="text" id="cardNumInput" placeholder="4532 •••• •••• 8912" maxlength="19" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cardExpInput">Expiry Date (MM/YY) *</label>
+                <div class="form-input-wrap">
+                  <i class="fa-regular fa-calendar"></i>
+                  <input type="text" id="cardExpInput" placeholder="12/28" maxlength="5" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cardCvvInput">CVV / CVC *</label>
+                <div class="form-input-wrap">
+                  <i class="fa-solid fa-shield"></i>
+                  <input type="password" id="cardCvvInput" placeholder="•••" maxlength="4" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cardHolderInput">Name on Card *</label>
+              <div class="form-input-wrap">
+                <i class="fa-solid fa-user-pen"></i>
+                <input type="text" id="cardHolderInput" placeholder="e.g. C. ATAPATTU" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Method 2: Koko Pay Later -->
+          <div id="gatewayPaneKoko" style="display: none;">
+            <div class="koko-banner-box">
+              <strong>Split your bill into 3 equal monthly installments with 0% interest:</strong>
+              <p style="margin-top: 0.35rem;">Pay 3 installments of <strong id="kokoInstallmentCalc">LKR 0</strong> each. Instant approval with your debit or credit card.</p>
+            </div>
+          </div>
+
+          <!-- Method 3: Mintpay -->
+          <div id="gatewayPaneMintpay" style="display: none;">
+            <div class="koko-banner-box" style="background: #F0FDF4; border-color: #BBF7D0;">
+              <strong style="color: #166534;">Mintpay Pay-in-3:</strong>
+              <p style="margin-top: 0.35rem;">Pay 1/3 today and the remaining 2 payments over 60 days. No hidden fees.</p>
+            </div>
+          </div>
+
+          <!-- Method 4: Cash on Delivery -->
+          <div id="gatewayPaneCod" style="display: none;">
+            <div class="koko-banner-box" style="background: #F1F5F9; border-color: #CBD5E1;">
+              <strong style="color: #334155;">Cash on Delivery Available:</strong>
+              <p style="margin-top: 0.35rem;">Pay in cash to our courier partner at your doorstep upon receiving your parcel.</p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" id="btnSubmitPayment" style="width: 100%; padding: 0.95rem 0; font-size: 1.05rem; font-weight: 800; margin-top: 1rem;">
+            <i class="fa-solid fa-lock"></i> Pay Securely
+          </button>
+        </form>
+      </div>
+
+      <!-- Right: Bill Summary Card -->
+      <div class="gateway-order-summary-card">
+        <h4 class="summary-card-title">Order Bill Breakdown</h4>
+        
+        <div class="gateway-summary-row">
+          <span>Items Subtotal:</span>
+          <strong id="checkoutSubtotal">LKR 0</strong>
+        </div>
+        <div class="gateway-summary-row">
+          <span>Islandwide Delivery:</span>
+          <span id="checkoutShipping">FREE</span>
+        </div>
+        <div class="gateway-summary-row total">
+          <span>Amount to Pay:</span>
+          <span id="checkoutFinalTotal">LKR 0</span>
+        </div>
+
+        <div style="margin-top: 2rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; font-size: 0.8rem; color: var(--color-slate); display: flex; flex-direction: column; gap: 0.6rem;">
+          <div><i class="fa-solid fa-circle-check" style="color: #10B981; margin-right: 0.4rem;"></i> Sri Lankan Banking Payment Partner</div>
+          <div><i class="fa-solid fa-circle-check" style="color: #10B981; margin-right: 0.4rem;"></i> Instant Tax Invoice & SMS Confirmation</div>
+          <div><i class="fa-solid fa-circle-check" style="color: #10B981; margin-right: 0.4rem;"></i> 7-Day Exchange at any Sriyani Branch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Order Payment Confirmation & Invoice Modal -->
+  <div class="order-invoice-backdrop" id="orderInvoiceBackdrop"></div>
+  <div class="order-invoice-modal" id="orderInvoiceModal" role="dialog" aria-modal="true">
+    <div id="orderInvoiceContent">
+      <!-- Injected by js/cart.js -->
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       B2B MODALS: SUPPLIER STOCK ORDERING, PAYMENTS & INVOICES
+       ========================================================================== -->
+
+  <!-- B2B 1: Supplier Stock Purchase Order Modal -->
+  <div class="order-stock-backdrop" id="orderStockBackdrop" onclick="closeOrderStockModal()"></div>
+  <div class="order-stock-modal" id="orderStockModal" role="dialog" aria-modal="true" aria-labelledby="orderStockTitle">
+    <div class="modal-header">
+      <div>
+        <h3 id="orderStockTitle"><i class="fa-solid fa-truck-ramp-box" style="color: var(--color-gold);"></i> Order Stock from Textile Supplier</h3>
+        <p class="modal-subtitle">Official Sriyani Dress Point B2B Procurement & Purchase Order System</p>
+      </div>
+      <button type="button" class="close-modal-btn" onclick="closeOrderStockModal()" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <form id="orderStockForm" class="order-stock-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="stockOrderSupplier">Contracted Textile Mill / Supplier *</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-industry"></i>
+            <select id="stockOrderSupplier" required>
+              <option value="sup-2">Brandix Textiles Ltd (Linen & Cotton Fabrics)</option>
+              <option value="sup-1">MAS Holdings Lanka (Activewear & Performance Textiles)</option>
+              <option value="sup-3">Kandy Royal Silks & Sarees (Handloom & Silk Weaves)</option>
+              <option value="sup-4">Colombo Fashion Mills (Bridal Lehengas & Netting)</option>
+              <option value="sup-5">Kegalle Lace & Embroidery Studio (Avurudu & Lace)</option>
+              <option value="sup-6">Hameedia Garment Industries (Men's Tailoring & Suiting)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="stockOrderCategory">Garment / Stock Category *</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-layer-group"></i>
+            <select id="stockOrderCategory" required>
+              <option value="men">Men's Executive & Casual</option>
+              <option value="women">Women's Wear & Frocks</option>
+              <option value="sarees">Sarees & Handloom Silks</option>
+              <option value="bridal">Bridal Studio & Lehengas</option>
+              <option value="kids">Kids & Teens Fashion</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="stockOrderItemName">Fabric / Stock Lot Description *</label>
+        <div class="form-input-wrap">
+          <i class="fa-solid fa-tag"></i>
+          <input type="text" id="stockOrderItemName" placeholder="e.g. Pure Irish Linen Rolls (100% Breathable Weave - 500m)" required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="stockOrderBranch">Destination Showroom / Warehouse *</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-warehouse"></i>
+            <select id="stockOrderBranch" required>
+              <option value="Kegalle Central Warehouse (Flagship)">Kegalle Central Warehouse (Flagship)</option>
+              <option value="Kurunegala Mega Showroom">Kurunegala Mega Showroom</option>
+              <option value="Kandy Grand Showroom">Kandy Grand Showroom</option>
+              <option value="Ratnapura City Center Branch">Ratnapura City Center Branch</option>
+              <option value="Negombo Coastal Showroom">Negombo Coastal Showroom</option>
+              <option value="Gampaha City Branch">Gampaha City Branch</option>
+              <option value="Badulla Town Showroom">Badulla Town Showroom</option>
+              <option value="Matale Prestige Showroom">Matale Prestige Showroom</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="stockOrderPriority">Procurement Urgency</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-clock"></i>
+            <select id="stockOrderPriority">
+              <option value="Standard">Standard Delivery (10 - 14 Days)</option>
+              <option value="Express Urgent">Express Urgent Priority (3 - 5 Days)</option>
+              <option value="Festive Pre-order">Festive Season Pre-Order (30 Days)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="stockOrderQuantity">Quantity (Rolls / Lots / Pieces) *</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-boxes-stacked"></i>
+            <input type="number" id="stockOrderQuantity" min="1" value="50" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="stockOrderUnitCost">Supplier Unit Cost (LKR) *</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-money-bill"></i>
+            <input type="number" id="stockOrderUnitCost" min="100" value="12000" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="stockOrderExpectedDate">Expected Delivery Date *</label>
+          <div class="form-input-wrap">
+            <i class="fa-regular fa-calendar"></i>
+            <input type="date" id="stockOrderExpectedDate" required />
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Calculation Card -->
+      <div class="stock-calc-card">
+        <div class="calc-row">
+          <span>Base Goods Subtotal:</span>
+          <strong id="stockOrderSubtotal">LKR 600,000</strong>
+        </div>
+        <div class="calc-row">
+          <span>VAT / Excise (15%):</span>
+          <strong id="stockOrderTax">LKR 90,000</strong>
+        </div>
+        <div class="calc-row total">
+          <span>Total Purchase Order & Invoice Value:</span>
+          <span id="stockOrderTotal">LKR 690,000</span>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top: 1rem;">
+        <label for="stockOrderNotes">Procurement Specifications & Terms</label>
+        <div class="form-input-wrap">
+          <i class="fa-solid fa-align-left" style="top: 14px;"></i>
+          <textarea id="stockOrderNotes" rows="2" placeholder="State thread counts, dye specifications, quality inspection terms, etc."></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="padding-top: 1rem; border-top: 1px solid var(--color-border); display: flex; gap: 1rem; justify-content: flex-end;">
+        <button type="button" class="btn-outline" onclick="closeOrderStockModal()">Cancel</button>
+        <button type="submit" class="btn-primary" style="background: var(--color-gold); color: var(--color-dark); font-weight: 800;">
+          <i class="fa-solid fa-file-circle-check"></i> Authorize PO & Generate Supplier Invoice
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- B2B 2: Supplier Payment Settlement Modal -->
+  <div class="supplier-payment-backdrop" id="supplierPaymentBackdrop" onclick="closeSupplierPaymentModal()"></div>
+  <div class="supplier-payment-modal" id="supplierPaymentModal" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div>
+        <h3><i class="fa-solid fa-building-columns" style="color: #10B981;"></i> Settle Supplier Payable Bill</h3>
+        <p class="modal-subtitle">Official Sriyani Dress Point Corporate Treasury Disbursal</p>
+      </div>
+      <button type="button" class="close-modal-btn" onclick="closeSupplierPaymentModal()" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="supplier-payment-summary" id="supplierPaymentSummaryBox">
+      <!-- Injected by js/main.js -->
+    </div>
+
+    <form id="supplierPaymentForm" class="supplier-payment-form">
+      <input type="hidden" id="supplierPaymentInvoiceId" value="" />
+
+      <div class="form-group">
+        <label>Select Corporate Disbursal Method *</label>
+        <div class="payment-method-selector-grid">
+          <label class="corp-pay-option active">
+            <input type="radio" name="corpPayMethod" value="Commercial Bank Corporate Direct Wire" checked />
+            <div class="option-card">
+              <i class="fa-solid fa-building-columns"></i>
+              <strong>Bank Wire Transfer</strong>
+              <small>Commercial Bank / Sampath / BOC</small>
+            </div>
+          </label>
+          <label class="corp-pay-option">
+            <input type="radio" name="corpPayMethod" value="Corporate Visa Business Card" />
+            <div class="option-card">
+              <i class="fa-solid fa-credit-card"></i>
+              <strong>Visa Business Card</strong>
+              <small>Corporate Credit Line</small>
+            </div>
+          </label>
+          <label class="corp-pay-option">
+            <input type="radio" name="corpPayMethod" value="Commercial Bank Crossed Cheque" />
+            <div class="option-card">
+              <i class="fa-solid fa-money-check-dollar"></i>
+              <strong>Crossed Cheque</strong>
+              <small>Account Payee Only</small>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="supplierPaymentRef">Bank Reference / Cheque No. *</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-receipt"></i>
+            <input type="text" id="supplierPaymentRef" placeholder="e.g. CB-WIRE-889410" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="supplierPaymentAccount">Sriyani Corporate Account</label>
+          <div class="form-input-wrap">
+            <i class="fa-solid fa-shield-halved"></i>
+            <input type="text" id="supplierPaymentAccount" value="Commercial Bank Kegalle (A/C: 1000-8821-4455)" readonly />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="supplierPaymentNotes">Payment Voucher Remarks</label>
+        <div class="form-input-wrap">
+          <i class="fa-solid fa-pen"></i>
+          <input type="text" id="supplierPaymentNotes" placeholder="Approved by Finance Director - Settlement for textile lot" />
+        </div>
+      </div>
+
+      <div class="modal-footer" style="padding-top: 1rem; border-top: 1px solid var(--color-border); display: flex; gap: 1rem; justify-content: flex-end;">
+        <button type="button" class="btn-outline" onclick="closeSupplierPaymentModal()">Cancel</button>
+        <button type="submit" class="btn-primary" style="background: #10B981; color: white; font-weight: 800;">
+          <i class="fa-solid fa-check-double"></i> Confirm Settlement & Mark Invoice as Paid
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- B2B 3: Official B2B Supplier Tax Invoice Modal -->
+  <div class="supplier-invoice-backdrop" id="supplierInvoiceBackdrop" onclick="closeSupplierInvoiceModal()"></div>
+  <div class="supplier-invoice-modal" id="supplierInvoiceModal" role="dialog" aria-modal="true">
+    <div id="supplierInvoiceContent">
+      <!-- Injected dynamically by js/main.js -->
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       CUSTOMER VIRTUAL FITTING ROOM MODAL (STUDIO)
+       ========================================================================== -->
+  <div class="virtual-fitting-backdrop" id="virtualFittingRoomBackdrop" onclick="closeVirtualFittingRoom()"></div>
+  <div class="virtual-fitting-modal" id="virtualFittingRoomModal" role="dialog" aria-modal="true" aria-labelledby="vfrModalTitle">
+    <!-- Modal Header -->
+    <div class="vfr-modal-header">
+      <div class="vfr-header-title">
+        <div class="vfr-brand-badge"><i class="fa-solid fa-shirt"></i> SRIYANI 3D FITTING STUDIO</div>
+        <h3 id="vfrModalTitle">Virtual Fitting Room & AI Size Predictor</h3>
+      </div>
+      <div class="vfr-header-controls">
+        <div class="vfr-gender-switch">
+          <button type="button" class="gender-btn active" id="vfrGenderFemBtn" onclick="setFittingGender('female')">
+            <i class="fa-solid fa-person-dress"></i> Women
+          </button>
+          <button type="button" class="gender-btn" id="vfrGenderMaleBtn" onclick="setFittingGender('male')">
+            <i class="fa-solid fa-person"></i> Men
+          </button>
+        </div>
+        <button type="button" class="close-modal-btn" onclick="closeVirtualFittingRoom()" aria-label="Close Virtual Fitting Room">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="vfr-modal-body">
+      <!-- Left Stage: Mannequin Canvas & Visual Draping -->
+      <div class="vfr-stage-pane">
+        <!-- Lighting Ambience Selector -->
+        <div class="vfr-lighting-selector">
+          <span class="lighting-lbl"><i class="fa-solid fa-lightbulb"></i> Ambience:</span>
+          <button type="button" class="lighting-pill active" data-light="daylight" onclick="changeFittingLighting('daylight')">Daylight</button>
+          <button type="button" class="lighting-pill" data-light="gala" onclick="changeFittingLighting('gala')">Evening Gala</button>
+          <button type="button" class="lighting-pill" data-light="sunset" onclick="changeFittingLighting('sunset')">Sunset</button>
+        </div>
+
+        <!-- Mannequin Canvas Container -->
+        <div class="vfr-canvas-box" id="fittingMannequinCanvas">
+          <div class="vfr-avatar-wrapper">
+            <img src="" alt="Avatar Model" id="fittingAvatarImg" class="vfr-avatar-img" />
+            <img src="" alt="Garment Overlay" id="fittingGarmentImg" class="vfr-garment-layer" />
+            <div class="vfr-tint-overlay" id="fittingTintOverlay"></div>
+          </div>
+
+          <!-- Fit Overlay Badges -->
+          <div class="vfr-fit-indicator-badge" id="vfrFitIndicatorBadge">
+            <i class="fa-solid fa-ruler-combined"></i>
+            <div>
+              <strong id="vfrMatchRateBadge">97% Match</strong>
+              <small id="vfrSizeAdviceBadge">Recommended Size M</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Color Swatches Bar -->
+        <div class="vfr-color-swatches-wrap">
+          <span class="swatches-lbl"><i class="fa-solid fa-palette"></i> Shade Palette:</span>
+          <div class="vfr-color-swatches" id="fittingColorPalette">
+            <!-- Rendered by js/main.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Control Suite -->
+      <div class="vfr-controls-pane">
+        <!-- VFR Navigation Tabs -->
+        <div class="vfr-tabs">
+          <button type="button" class="vfr-tab-btn active" data-vfr-tab="wardrobe" onclick="switchVfrTab('wardrobe')">
+            <i class="fa-solid fa-boxes-stacked"></i> Wardrobe Rack
+          </button>
+          <button type="button" class="vfr-tab-btn" data-vfr-tab="size-finder" onclick="switchVfrTab('size-finder')">
+            <i class="fa-solid fa-ruler-combined"></i> AI Size Finder
+          </button>
+          <button type="button" class="vfr-tab-btn" data-vfr-tab="model" onclick="switchVfrTab('model')">
+            <i class="fa-solid fa-user-gear"></i> Model Avatar
+          </button>
+        </div>
+
+        <!-- Tab 1: Wardrobe Rack -->
+        <div class="vfr-tab-pane" id="vfrTabWardrobe">
+          <div class="vfr-rack-filter-chips">
+            <button type="button" class="rack-chip active" onclick="filterFittingRack('all', this)">All</button>
+            <button type="button" class="rack-chip" onclick="filterFittingRack('sarees', this)">Sarees</button>
+            <button type="button" class="rack-chip" onclick="filterFittingRack('bridal', this)">Bridal</button>
+            <button type="button" class="rack-chip" onclick="filterFittingRack('women', this)">Women</button>
+            <button type="button" class="rack-chip" onclick="filterFittingRack('men', this)">Men</button>
+          </div>
+
+          <div class="vfr-wardrobe-grid" id="fittingWardrobeRack">
+            <!-- Populated dynamically by js/main.js -->
+          </div>
+        </div>
+
+        <!-- Tab 2: AI Size Finder -->
+        <div class="vfr-tab-pane" id="vfrTabSizeFinder" style="display: none;">
+          <div class="vfr-size-form">
+            <p class="size-guide-text">Input your body measurements. Our Sri Lankan tailoring engine computes your optimal fit with comfort ease tolerances.</p>
+
+            <div class="vfr-slider-group">
+              <div class="slider-header">
+                <label for="sliderHeight">Height (cm):</label>
+                <strong id="valSliderHeight">165 cm</strong>
+              </div>
+              <input type="range" id="sliderHeight" min="145" max="195" value="165" class="vfr-range-slider" oninput="handleFittingMeasurementChange()" />
+            </div>
+
+            <div class="vfr-slider-group">
+              <div class="slider-header">
+                <label for="sliderBust">Chest / Bust (Inches):</label>
+                <strong id="valSliderBust">34 in</strong>
+              </div>
+              <input type="range" id="sliderBust" min="28" max="52" value="34" class="vfr-range-slider" oninput="handleFittingMeasurementChange()" />
+            </div>
+
+            <div class="vfr-slider-group">
+              <div class="slider-header">
+                <label for="sliderWaist">Waist (Inches):</label>
+                <strong id="valSliderWaist">28 in</strong>
+              </div>
+              <input type="range" id="sliderWaist" min="22" max="48" value="28" class="vfr-range-slider" oninput="handleFittingMeasurementChange()" />
+            </div>
+
+            <div class="vfr-slider-group">
+              <div class="slider-header">
+                <label for="sliderHip">Hips (Inches):</label>
+                <strong id="valSliderHip">38 in</strong>
+              </div>
+              <input type="range" id="sliderHip" min="30" max="54" value="38" class="vfr-range-slider" oninput="handleFittingMeasurementChange()" />
+            </div>
+
+            <!-- AI Output Card -->
+            <div class="vfr-ai-result-card" id="fittingAiFitCard">
+              <div class="ai-score-banner">
+                <div class="score-circle">
+                  <span id="vfrAiScoreNumber">97%</span>
+                  <small>Match</small>
+                </div>
+                <div class="score-details">
+                  <span class="best-size-label">YOUR IDEAL FIT:</span>
+                  <strong class="best-size-badge" id="vfrAiSizeBadge">Size M</strong>
+                </div>
+              </div>
+
+              <div class="fit-breakdown-table">
+                <div class="fit-row">
+                  <span>Shoulder & Chest:</span>
+                  <strong id="vfrAiChestFeedback">Comfort Fit (+1.5" Ease)</strong>
+                </div>
+                <div class="fit-row">
+                  <span>Waistline Drape:</span>
+                  <strong id="vfrAiWaistFeedback">Tailored Contour</strong>
+                </div>
+                <div class="fit-row">
+                  <span>Hem Length:</span>
+                  <strong id="vfrAiLengthFeedback">Floor Grazing Hem</strong>
+                </div>
+              </div>
+              <p class="vfr-ai-comment" id="vfrAiComment">Comfort tailored drape with standard ease for Sri Lankan climate.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Model Avatar Customizer -->
+        <div class="vfr-tab-pane" id="vfrTabModel" style="display: none;">
+          <div class="vfr-model-selector-box">
+            <h4 class="model-select-title">Choose Mannequin Model</h4>
+            <div class="vfr-models-grid" id="fittingModelsGrid">
+              <!-- Rendered by js/main.js -->
+            </div>
+
+            <div class="vfr-custom-photo-box">
+              <h4><i class="fa-solid fa-camera"></i> Or Try with Your Own Photo</h4>
+              <p style="font-size: 0.8rem; color: #94A3B8; margin-bottom: 0.75rem;">Upload a full-body portrait or selfie to preview garments against your face/tone.</p>
+              <input type="file" id="vfrUserPhotoInput" accept="image/*" style="display: none;" onchange="handleUserPhotoUpload(event)" />
+              <button type="button" class="btn-outline" onclick="document.getElementById('vfrUserPhotoInput').click()" style="width: 100%; border-color: #475569; color: white;">
+                <i class="fa-solid fa-upload"></i> Upload Full Body Photo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer Action Bar -->
+    <div class="vfr-modal-footer">
+      <div class="vfr-active-product-info">
+        <img src="" alt="Selected Product" id="vfrFooterThumb" class="vfr-footer-thumb" />
+        <div>
+          <strong id="vfrFooterTitle">Pure Kanchipuram Gold Silk Saree</strong>
+          <div class="vfr-footer-sub">
+            <span id="vfrFooterPrice">LKR 28,500</span>
+            <span class="vfr-selected-size-pill">Fitted Size: <strong id="vfrFooterSize">M</strong></span>
+            <span class="vfr-selected-color-pill" id="vfrFooterColorName">Original Royal</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="vfr-footer-actions">
+        <button type="button" class="btn-outline" onclick="shareFittedLook()" title="Save fitted outfit screenshot">
+          <i class="fa-solid fa-share-nodes"></i> Save Look
+        </button>
+        <button type="button" class="btn-primary" onclick="addFittedLookToCart()" style="background: var(--gold-gradient); color: #1A0D00; font-weight: 800;">
+          <i class="fa-solid fa-bag-shopping"></i> Add Fitted Outfit to Bag
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Mobile Navigation Drawer -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div class="mobile-nav-header">
+      <div class="brand-text-block">
+        <span class="brand-name" style="font-size: 1.3rem;">SRIYANI</span>
+        <span class="brand-tagline">DRESS POINT</span>
+      </div>
+      <button type="button" class="close-drawer-btn" id="closeMobileNav" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <ul class="mobile-nav-links">
+      <li><a href="index.html" class="mobile-nav-link"><span>Home</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="javascript:void(0)" class="mobile-nav-link" onclick="selectCategoryAndScroll('women');"><span>Women's Wear</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="javascript:void(0)" class="mobile-nav-link" onclick="selectCategoryAndScroll('sarees');"><span>Sarees & Traditional</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="javascript:void(0)" class="mobile-nav-link" onclick="selectCategoryAndScroll('men');"><span>Men's Executive</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="javascript:void(0)" class="mobile-nav-link" onclick="selectCategoryAndScroll('kids');"><span>Kids & Teens</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="javascript:void(0)" class="mobile-nav-link" onclick="selectCategoryAndScroll('bridal');"><span>Bridal Studio</span> <i class="fa-solid fa-chevron-right"></i></a></li>
+      <li><a href="javascript:void(0)" class="mobile-nav-link" onclick="openVirtualFittingRoom();" style="color: #F43F5E; font-weight: 700;"><span>Virtual Fitting Room</span> <i class="fa-solid fa-person-dress"></i></a></li>
+      <li><a href="#virtualStylist" class="mobile-nav-link" onclick="scrollToSection('virtualStylist');" style="color: var(--color-gold);"><span>Virtual Stylist</span> <i class="fa-solid fa-wand-magic-sparkles"></i></a></li>
+      <li><a href="#deals" class="mobile-nav-link" onclick="scrollToSection('deals');" style="color: #DC2626;"><span>Avurudu Offers</span> <i class="fa-solid fa-bolt"></i></a></li>
+      <li><a href="#branches" class="mobile-nav-link" onclick="scrollToSection('branches');"><span>Islandwide Branches</span> <i class="fa-solid fa-store"></i></a></li>
+      <li><a href="javascript:void(0)" class="mobile-nav-link" onclick="openAuthModal('admin');" style="color: var(--color-primary);"><span>Staff / Admin Portal</span> <i class="fa-solid fa-lock"></i></a></li>
+    </ul>
+
+
+    <div class="mobile-nav-footer">
+      <div><i class="fa-solid fa-phone" style="color: var(--color-primary);"></i> Hotline: +94 35 222 3456</div>
+      <div><i class="fa-solid fa-truck-fast" style="color: var(--color-primary);"></i> Islandwide Online Delivery & Payments</div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Application Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
